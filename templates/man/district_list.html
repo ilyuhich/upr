@@ -1,0 +1,25 @@
+{% extends 'man/base.html' %}
+
+{% block title %}
+    Районы города
+{% endblock %}
+
+{% block content %}
+    <table class="table" border="2px">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Название</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for district in district_list %}
+                <tr>
+                    <td> {{ forloop.counter }}</td>
+                    <td>
+                        {{ district.district_name }}
+                </tr>
+                {% endfor %}
+            </tbody>
+    </table>
+{% endblock %}

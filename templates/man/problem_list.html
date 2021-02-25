@@ -1,0 +1,46 @@
+{% extends 'man/base.html' %}
+
+{% block title %}
+    Открытые проблемы
+{% endblock %}
+
+{% block content %}
+    <table class="table" border="2px">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Создано</th>
+                    <th scope="col">Осталось</th>
+                    <th scope="col">Завершено</th>
+                    <th scope="col">Номер</th>
+                    <th scope="col">Адрес</th>
+                    <th scope="col">Описание</th>
+                    <th scope="col">Еще что-то</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for problem in problems %}
+                <tr>
+                    <td> {{ forloop.counter }}</td>
+                    <td>
+                        {{ problem.time_created|date:"d.m.Y" }}
+                        {{ problem.time_created|time:"H:i" }}
+                    </td>
+                    <td> в разработке </td>
+                    <td>
+                        {% if problem.time_closed %}
+                            {{ problem.time_created|date:"d.m.Y" }}
+                            {{ problem.time_created|time:"H:i" }}
+                        {% else %}
+                            незавершено
+                        {% endif %}
+                    </td>
+                    <td><a href="{% url 'problem-detail' problem.pk %}">{{ problem.num }} </a></td>
+                    <td> {{ problem.obj.addr }}</td>
+                    <td> {{ problem.description }} </td>
+                    <td> чёнадо</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+    </table>
+{% endblock %}

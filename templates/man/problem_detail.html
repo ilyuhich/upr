@@ -1,0 +1,17 @@
+{% extends 'man/base.html' %}
+
+{% block title %}
+    {{ problem.num }}
+{% endblock %}
+
+{% block content %}
+    <h5>Создана:  {{ problem.time_created|date:"d.m.Y" }} в
+                  {{ problem.time_created|time:"H:i" }}</h5>
+    <h5>Закрыта: {% if problem.time_closed %} завершено
+                    {% else %} незавершено
+                    {% endif %}
+    </h5>
+    <h5>Адрес:    {{ problem.obj.addr }}</h5>
+    <h5>Описание: {{ problem.description }}</h5>
+
+{% endblock %}
